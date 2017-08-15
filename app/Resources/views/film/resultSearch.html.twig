@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<table>
+    {% for res in resSearch %}
+        <tr>
+            <td>
+                {{ res.id }}
+            </td>
+            <td>
+                {{ res.titre }}
+            </td>
+        </tr>
+        {% else %}
+        <p>Pas de résultat</p>
+    {% endfor %}
+</table>
+{% endblock %}

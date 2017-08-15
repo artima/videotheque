@@ -1,0 +1,29 @@
+film_index:
+    path:     /
+    defaults: { _controller: "MIPlatformBundle:Film:index" }
+    methods:  GET
+
+film_show:
+    path:     /{slug}/show
+    defaults: { _controller: "MIPlatformBundle:Film:show" }
+    methods:  GET
+
+film_new:
+    path:     /new
+    defaults: { _controller: "MIPlatformBundle:Film:new" }
+    methods:  [GET, POST]
+
+film_edit:
+    path:     /{slug}/edit
+    defaults: { _controller: "MIPlatformBundle:Film:edit" }
+    methods:  [GET, POST]
+
+film_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MIPlatformBundle:Film:delete" }
+    methods:  DELETE
+
+mi_film_search:
+    path: /
+    defaults: {_controller: "MIPlatformBundle:Film:search" }
+

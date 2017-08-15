@@ -1,0 +1,63 @@
+<?php
+
+/**
+ * Created by PhpStorm.
+ * User: Mitra
+ * Date: 17/07/2017
+ * Time: 12:08
+ */
+
+namespace AppBundle\Entity;
+
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="fos_user")
+ */
+class User extends BaseUser
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="MI\PlatformBundle\Entity\Fiml", mappedBy="user")
+     */
+    private $fiml;
+
+    public function __construct()
+    {
+        parent::__construct();
+        // your own logic
+    }
+
+    /**
+     * Set fiml
+     *
+     * @param \MI\PlatformBundle\Entity\Fiml $fiml
+     *
+     * @return User
+     */
+    public function setFiml(\MI\PlatformBundle\Entity\Fiml $fiml)
+    {
+        $this->fiml = $fiml;
+
+        return $this;
+    }
+
+    /**
+     * Get fiml
+     *
+     * @return \MI\PlatformBundle\Entity\Fiml
+     */
+    public function getFiml()
+    {
+        return $this->fiml;
+    }
+}

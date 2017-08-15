@@ -1,0 +1,15 @@
+mi_platform_category:
+    resource: "@MIPlatformBundle/Resources/config/routing/category.yml"
+    prefix:   /category
+
+mi_platform_image:
+    resource: "@MIPlatformBundle/Resources/config/routing/image.yml"
+    prefix:   /image
+
+mi_platform_film:
+    resource: "@MIPlatformBundle/Resources/config/routing/film.yml"
+    prefix:   /film
+
+mi_platform_homepage:
+    path:     /
+    defaults: { _controller: MIPlatformBundle:Default:index }

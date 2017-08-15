@@ -1,0 +1,66 @@
+<h1>Films list</h1>
+<div class="count">
+    {{ pagination.getTotalItemCount }}
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>{{ knp_pagination_sortable(pagination, 'Id', 'film.id') }}</th>
+            <th{% if pagination.isSorted('film.Titre') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'film.titre') }}</th>
+            <th>Description</th>
+            <th>Slug</th>
+            <th>Key</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    {% for key, film in pagination %}
+        <tr style="background-color:{% if loop.index is even %}#f0f0f0{% else %}white{% endif %};">
+            <td><a href="{{ path('film_show', { 'slug': film.slug }) }}">{{ film.slug }}</a></td>
+            <td>{{ film.titre }}</td>
+            <td>{{ film.description }}</td>
+            <td>{{ film.slug }}</td>
+            <td>{{ key }}</td>
+            <td>
+                <table>
+                    {% for category in film.categories %}
+                        <tr>
+                            <td>-{{ category.libelle }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('film_show', { 'slug': film.slug }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('film_edit', { 'slug': film.slug }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+           <td>key : {{ key }}</td>
+           <td>index : {{ loop.index }} </td>
+           <td>index 0 : {{ loop.index0 }}</td>
+           <td>revindex : {{ loop.revindex }}</td>
+           <td>revindex0 : {{ loop.revindex0 }}</td>
+           <td>first : {{ loop.first }}</td>
+           <td>last: {{ loop.first }}, length: {{ loop.length }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
+<ul>
+    <li>
+        <a href="{{ path('film_new') }}">Create a new film</a>
+    </li>
+</ul>
+

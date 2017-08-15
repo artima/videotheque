@@ -1,0 +1,25 @@
+services:
+#    mi_platform.example:
+#        class: MI\PlatformBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+
+    mi_platform.email.application_mailer:
+        class: MI\PlatformBundle\Email\ApplicationMailer
+        arguments:
+            - "@mailer"
+
+    mi_platform.doctrine_listener.application_creation:
+        class: MI\PlatformBundle\DoctrineListener\ApplicationCreationListener
+        arguments:
+            - "@mi_platform.email.application_mailer"
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+
+    mi_platform.doctrine_listener.application_delete:
+        class: MI\PlatformBundle\DoctrineListener\ApplicationSuppressionListener
+        arguments:
+            - "@mi_platform.email.application_mailer"
+        tags:
+            - { name: doctrine.event_listener, event: postRemove }
+

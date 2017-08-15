@@ -1,0 +1,44 @@
+{% extends '::layout.html.twig' %}
+
+{% block mi_film %}
+    <h1>Film</h1>
+{{ film.nbFilm }}
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ film.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ film.titre }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ film.description }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ film.slug }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td><img src="{{ asset(film.image.getWebPath) }}" width="50" alt="{{ film.image.alt }}" /></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('film_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('film_edit', { 'slug': film.slug }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
